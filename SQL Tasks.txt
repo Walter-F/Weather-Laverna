@@ -1,0 +1,27 @@
+SELECT * FROM Managers
+WHERE Phone IS NOT NULL
+
+SELECT * FROM Sells
+WHERE CAST(Date AS DATE) = '2021-06-20'
+
+*Условимся, что товар "Фанера" имеет ID = 1
+SELECT AVG(Sum) FROM Sells
+WHERE ID_Prod ='1'
+
+*Условимся, что товар "ОСБ" имеет ID = 2
+SELECT Managers.FIO, SUM(Sells.Sum)
+FROM Managers
+INNER JOIN Sells ON Sells.ID_prod = 2;
+
+SELECT Managers.FIO, Products.Name
+FROM Managers
+INNER JOIN Products ON CAST(Sells.Date AS DATE) = '2021-08-22';
+
+SELECT * FROM Products
+WHERE Name LIKE '%Фанера%' AND Cost >= 1500
+
+SELECT * FROM Sells
+GROUP BY Date, Name
+
+SELECT COUNT(*) c FROM Products
+GROUP BY Name, Cost, Volume HAVING c > 1
